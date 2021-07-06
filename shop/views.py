@@ -214,8 +214,8 @@ def clientedit(request, pk):
         return render(request, "client/editclient.html", context)
     if request.method == 'POST':
         client = Costumer.objects.get(user_id=pk)
-        user_form = UserForm(request.POST, instance=client.user)
-        costumer_form = CostumerForm(request.POST, instance=client)
+        user_form = UserForm(request.POST, request.FILES, instance=client.user)
+        costumer_form = CostumerForm(request.POST, request.FILES, instance=client)
         if user_form.is_valid() and costumer_form.is_valid():
             user_form.save()
             costumer_form.save()

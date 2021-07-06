@@ -1,0 +1,9 @@
+{% extends 'client/base.html' %}
+{% block title %}
+Merci
+{% endblock %}
+{% block content %}
+ <h1>Merci</h1>
+ <p>Votre commande a été complétée avec succès. Votre numéro de commande est:
+ <strong>{{ order.id }}</strong>.</p>
+{% endblock %}

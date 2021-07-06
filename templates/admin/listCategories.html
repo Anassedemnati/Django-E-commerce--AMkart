@@ -1,0 +1,32 @@
+{% extends 'admin/mainAdmin.html' %} {% block title %}Categories{% endblock %}
+{% block content %}
+    <br/>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Categories</h5>
+            </div>
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'createCategorie' %}">Ajouter Categorie</a></td>
+                    </tr>
+                    <tr>
+                        <th>Categorie</th>
+                        <th>Modifier</th>
+                        <th>Suprimer</th>
+                    </tr>
+                    {% for cat in Categories %}
+                        <tr>
+                            <td>{{ cat.nomCat }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'editCategorie' cat.id %}">Modifier</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'deleteCategorie' cat.id %}">Suprimer</a></td>
+
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'admin/mainAdmin.html' %} {% block title %}Client{% endblock %}
+{%block content %}
+
+<br />
+
+<div class="row">
+  <div class="col-md">
+    <div class="card card-body">
+      <h5>Clients</h5>
+    </div>
+    <div class="card card-body">
+      <table class="table">
+
+        <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>email</th>
+
+          <th>Plus</th>
+        </tr>
+        {% for client in clientUsers %}
+
+        <tr>
+           <td>{{client.user.first_name}}</td>
+          <td>{{client.user.last_name}}</td>
+          <td>{{client.user.email}}</td>
+            <td><a class="btn btn-sm btn-success" href="{% url 'clientDetaille' client.id %}">détaillé</a></td>
+
+        </tr>
+        {% endfor %}
+
+
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'admin/mainAdmin.html' %} {% block title %}users{% endblock %}
+{%block content %}
+<br />
+<div class="row">
+  <div class="col-md">
+    <div class="card card-body">
+      <h5>Utilisateur</h5>
+    </div>
+
+    <div class="card card-body">
+      <table class="table">
+        <tr>
+          <th>
+            <a class="btn btn-sm btn-info" href="{% url 'adminUsersCreate' %}">Ajouter Utilisateur</a>
+          </th>
+        </tr>
+        <tr>
+
+
+         <th>Nom</th>
+          <th>Prenom</th>
+          <th>email</th>
+          <th>Plus</th>
+        </tr>
+        {% for admin in  adminUsers %}
+        <tr>
+          <td>{{admin.user.first_name}}</td>
+          <td>{{admin.user.last_name}}</td>
+          <td>{{admin.user.email}}</td>
+            <td><a class="btn btn-sm btn-success" href="{% url 'userDetaille'  admin.id %}">détaillé</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

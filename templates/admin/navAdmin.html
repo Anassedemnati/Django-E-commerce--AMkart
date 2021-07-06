@@ -1,0 +1,60 @@
+{% load static %}
+<style>
+    .hello-msg{
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+    }
+
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="{% static 'images/AM-SHOP.png '%}" alt="logo" />
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Plus
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'listProduct' %}">Produit</a>
+          <a class="dropdown-item" href="{% url 'listCommande' %}"> Commande</a>
+          <a class="dropdown-item" href="{% url 'listCategorie' %}"> Categories</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'adminUsersList' %}">Utilisateur</a>
+          <a class="dropdown-item" href="{% url 'clientList' %}">Client</a>
+        </div>
+      </li>
+      <li class="nav-item me-3 me-lg-1">
+        <a class="nav-link" href="#">
+          <span class="oi oi-cart"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+    <span class="hello-msg">Bienvenu, {{ request.user }} </span>
+    <span class="hello-msg"><a href="{% url 'logouta' %}">Logout</a></span>
+</nav>

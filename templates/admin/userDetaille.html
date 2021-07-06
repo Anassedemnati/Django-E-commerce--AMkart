@@ -1,0 +1,83 @@
+{% extends 'admin/mainAdmin.html' %}
+{% block  content%}
+
+
+
+
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Vendeur:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="#">Modifier vendeur</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'deleteuser' seller.id %}">Supprimer vendeur</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Coordonnées</h5>
+			<hr>
+			<p>Nom complete: {{ seller.user.get_full_name }}</p>
+			<p>Email:  {{ seller.user.email }}</p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total des produits</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px"> {{ TotalProd }}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+		</div>
+	</div>
+
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Product</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                        <th>Stock</th>
+                      <th>Images</th>
+                      <th>Modifier</th>
+                      <th>Suprimer</th>
+				</tr>
+               {% for p in produits %}
+                <tr>
+                  <td>{{ p.nomPro }}</td>
+                  <td>{{ p.categorie }}</td>
+                  <td>{{ p.prixPro }}</td>
+                  <td>{{ p.contiteStock }}</td>
+                  <td class="w-25"><img src="{{p.image.url}}" class="img-fluid img-thumbnail" > </td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'editProduct' p.id  %}">Modifier</a></td>
+                  <td><a class="btn btn-sm btn-danger" href="{% url 'deleteProduct' p.id %}">Suprimer</a></td>
+        </tr>
+        {% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+</div>
+
+
+{% endblock  %}

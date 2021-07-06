@@ -1,0 +1,98 @@
+{% extends 'client/base.html' %}
+{% block content %}
+
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg">
+<div class="container">
+	<h2 class="title-page">Our Store</h2>
+
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	<aside class="col-md-3">
+
+<div class="card">
+	<article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Categories</h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_1" style="">
+			<div class="card-body">
+
+				<ul class="list-menu">
+                <li><a href="{% url 'store' %}"> All products</a></li>
+                 {% if Cat|length > 0 %}
+                    {% for c in Cat %}
+				<li><a href="{{ c.get_url }}">{{ c.nomCat }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group  .// -->
+
+
+
+
+</div> <!-- card.// -->
+
+	</aside> <!-- col.// -->
+	<main class="col-md-9">
+
+<header class="border-bottom mb-4 pb-3">
+		<div class="form-inline">
+			<span class="mr-md-auto"> <b>{{ prod_count }}</b> Items found </span>
+
+		</div>
+</header><!-- sect-heading -->
+
+<div class="row">
+    {% for pro in products %}
+	<div class="col-md-4">
+		<figure class="card card-product-grid">
+			<div class="img-wrap">
+				<a href="{{pro.get_url}}">
+					<img src="{{ pro.image.url }}">
+				</a>
+
+
+
+			</div> <!-- img-wrap.// -->
+			<figcaption class="info-wrap">
+				<div class="fix-height">
+					<a href="{{pro.get_url}}" class="title">{{ pro.nomPro }}</a>
+					<div class="price-wrap mt-2">
+						<span class="price">{{ pro.prixPro }} Dhs</span>
+					</div> <!-- price-wrap.// -->
+				</div>
+                {% if pro.contiteStock <= 0 %}
+                    <a href="#" class="btn btn-block btn-danger">out of stock </a>
+                {% else %}
+				<a href="{% url 'cartAdd' pro.id %}" class="btn btn-block btn-primary">Added to cart </a>
+                {% endif %}
+			</figcaption>
+		</figure>
+	</div> <!-- col.// -->
+{% endfor %}
+
+</div> <!-- row end.// -->
+
+
+
+
+	</main> <!-- col.// -->
+
+</div>
+
+</div> <!-- container .//  -->
+</section>
+
+{% endblock %}

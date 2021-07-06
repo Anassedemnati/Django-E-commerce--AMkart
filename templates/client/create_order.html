@@ -1,0 +1,16 @@
+{% extends 'client/base.html' %}
+{% block title %}
+Votre commande
+{% endblock %}
+{% block content %}
+    <div class="order-info">
+        <h1>Votre commande</h1>
+        <p>Total de votre commande : {{ cart_total_price }}</p>
+        <br>
+    </div>
+    <form method="post" class="order-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Passer la commande"></p> 
+    </form>
+{% endblock %}

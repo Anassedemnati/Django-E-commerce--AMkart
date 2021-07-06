@@ -1,0 +1,41 @@
+{% extends 'admin/mainAdmin.html' %} {% block title %}Command{% endblock %}
+{% block content %}
+    <br/>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Command </h5>
+            </div>
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'CommandeCreate' %}">Ajouter Command</a></td>
+                    </tr>
+                    <tr>
+
+                        <th></th>
+                        <th>Date command</th>
+                        <th>Status</th>
+                        <th>Client</th>
+
+                        <th>Modifier</th>
+                        <th>Suprimer</th>
+                    </tr>
+                    {% for com in Commandes %}
+                        <tr>
+                            <td><a class="btn btn-sm btn-success" href="{% url 'CommandeDetaille' com.id %}">View</a></td>
+
+                            <td>{{ com.dateCom }}</td>
+                            <td>{{ com.etatCom }}</td>
+                            <td>{{ com.Costumer.user.get_full_name }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'editCommande' com.id %}">Modifier</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'deleteCommande' com.id %}">Suprimer</a></td>
+
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

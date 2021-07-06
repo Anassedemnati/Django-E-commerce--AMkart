@@ -1,0 +1,57 @@
+{% extends 'admin/mainAdmin.html' %} {% block title %}Produit{% endblock %}
+{% block content %}
+
+    <br/>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Products</h5>
+            </div>
+            <br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{prodFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+
+</div>
+<br>
+
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'ProductCreate' %}">Ajouter Produit</a></td>
+                    </tr>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Images</th>
+                        <th>Modifier</th>
+                        <th>Suprimer</th>
+                    </tr>
+                    {% for p in products %}
+                        <tr>
+                            <td>{{ p.nomPro }}</td>
+                            <td>{{ p.categorie }}</td>
+                            <td>{{ p.prixPro }}</td>
+                            <td>{{ p.contiteStock }}</td>
+                            <td class="w-25"><img src="{{ p.image.url }}" class="img-fluid img-thumbnail"></td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'editProduct' p.id %}">Modifier</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'deleteProduct' p.id %}">Suprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

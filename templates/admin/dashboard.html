@@ -1,0 +1,71 @@
+{% extends 'admin/mainAdmin.html' %}
+{% block content %}
+
+{%  include 'admin/statistique.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>LES CLIENTS:</h5>
+		<hr>
+		<div class="card card-body">
+
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>Client</th>
+					<th>Email</th>
+				</tr>
+
+                    {% for client in clients %}
+                    <tr>
+						<td><a class="btn btn-sm btn-success" href="{% url 'clientDetaille' client.id %}">View</a></td>
+						<td>{{ client.user.get_full_name }}</td>
+						<td>{{ client.user.email }}</td>
+					</tr>
+                    {% endfor %}
+
+
+
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>DERNIÈRES COMMANDES:</h5>
+		<hr>
+		<div class="card card-body">
+
+			<table class="table table-sm">
+				<tr>
+					    <th></th>
+
+                        <th>Date command</th>
+                        <th>Status</th>
+                        <th>Client</th>
+                        <th>Modifier</th>
+                        <th>Suprimer</th>
+				</tr>
+
+				{% for com in commands %}
+                        <tr>
+                            <td><a class="btn btn-sm btn-success" href="{% url 'CommandeDetaille' com.id %}">View</a></td>
+
+                            <td>{{ com.dateCom }}</td>
+                            <td>{{ com.etatCom }}</td>
+                            <td>{{ com.Costumer.user.get_full_name }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'editCommande' com.id %}">Modifier</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'deleteCommande' com.id %}">Suprimer</a></td>
+
+                        </tr>
+                    {% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+
+</div>
+{% endblock %}
